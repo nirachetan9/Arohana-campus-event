@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090b18" />
+  <meta name="description" content="AROHANA — Kishkindha University Freshers Celebration." />
+  <title>AROHANA | Kishkindha University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="AROHANA home">
+      <img class="university-brand" src="assets/kishkindha-university-brand.jpg" alt="Kishkindha University crest and wordmark"
+           onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='grid';">
+      <span id="logoFallback" class="logo-fallback">KU</span>
+      <span class="brand-copy"><strong>KISHKINDHA UNIVERSITY</strong><small>CELEBRATES TOGETHER</small></span>
+    </a>
+    <a class="nav-link" href="#register">Get your ticket <span>↗</span></a>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> THE FRESHERS CELEBRATION</div>
+        <h1>New beginnings.<br><em>One celebration.</em></h1>
+        <p class="hero-description">A new chapter deserves an unforgettable start. Come together, meet your people and make memories at Kishkindha University.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#register">Register for AROHANA <span>↗</span></a>
+          <span class="secure-note"><span class="check">✓</span> Student registration</span>
+        </div>
+      </div>
+      <div class="hero-art poster-art">
+        <img src="assets/arohana-event-poster.jpg" alt="AROHANA — The Rise of a New Era, Kishkindha University event poster">
+        <div class="poster-caption"><span>THE RISE OF A NEW ERA</span><span>✦ KISHKINDHA UNIVERSITY ✦</span></div>
+      </div>
+        <div class="float-star star-one">✦</div><div class="float-star star-two">✧</div><div class="float-star star-three">✦</div>
+      </div>
+    </section>
+
+    <section class="event-strip">
+      <div><span class="strip-label">HOSTED BY</span><strong>Kishkindha University</strong></div>
+      <div><span class="strip-label">EVENT</span><strong>Freshers Celebration</strong></div>
+      <div><span class="strip-label">YOUR ENTRY</span><strong>Digital QR Ticket</strong></div>
+    </section>
+
+    <section class="register-section" id="register">
+      <div class="section-heading">
+        <span class="eyebrow">YOUR INVITATION STARTS HERE</span>
+        <h2>Claim your <em>spot.</em></h2>
+        <p>Enter your name and KUB roll number. Your ticket will display both details with a unique scannable QR code.</p>
+      </div>
+
+      <div class="registration-layout">
+        <form id="registrationForm" class="registration-card">
+          <div class="card-heading"><div><span class="step-label">STUDENT REGISTRATION</span><h3>Join AROHANA</h3></div><span class="card-icon">✦</span></div>
+          <label for="fullName">Full name</label>
+          <input id="fullName" name="fullName" type="text" placeholder="Enter your name as per college records" maxlength="80" autocomplete="name" required />
+          <label for="rollNumber">University roll number</label>
+          <input id="rollNumber" name="rollNumber" type="text" placeholder="Example: KUB26CSE321" maxlength="24" autocomplete="off" required />
+          <p class="field-hint">Your roll number must start with KUB.</p>
+          <button id="submitButton" class="primary-button submit-button" type="submit">Generate my ticket <span>↗</span></button>
+          <p id="statusMessage" class="status-message" role="status" aria-live="polite"></p>
+          <p class="privacy-note">Your details are used for AROHANA event registration.</p>
+        </form>
+
+        <div class="ticket-side">
+          <div class="ticket-placeholder" id="ticketPlaceholder">
+            <div class="ticket-watermark">A</div>
+            <span class="ticket-label">YOUR DIGITAL PASS</span>
+            <div class="ticket-symbol">▦</div>
+            <h3>Your ticket<br>will appear here.</h3>
+            <p>Complete the registration form to generate your unique QR ticket.</p>
+            <div class="ticket-dash"></div>
+            <span class="ticket-footer">KISHKINDHA UNIVERSITY · AROHANA</span>
+          </div>
+
+          <div class="ticket-card ticket-3d hidden" id="ticketCard">
+            <div class="ticket-head"><span>✦ AROHANA</span><span class="ticket-year">2026 · ENTRY PASS</span></div>
+            <div class="ticket-rule"></div>
+            <span class="ticket-label">OFFICIAL STUDENT TICKET</span>
+            <h3 id="ticketName">Student Name</h3>
+            <div class="ticket-student-details"><span class="detail-label">UNIVERSITY ROLL NUMBER</span><p class="ticket-roll" id="ticketRoll">KUB000000</p></div>
+            <div class="qr-frame"><div id="qrcode"></div></div>
+            <p class="qr-caption">Present this QR code at the entry desk.</p>
+            <div class="ticket-id-row"><span>TICKET ID</span><strong id="ticketId">—</strong></div>
+            <button id="downloadTicket" class="download-button" type="button">Download ticket <span>↓</span></button>
+            <p class="ticket-warning">Keep this ticket safe. Duplicate registrations are not allowed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <span>ONE CAMPUS. MANY STORIES.</span>
+      <h2>Let the memories <em>begin.</em></h2>
+      <p>AROHANA · Kishkindha University</p>
+    </section>
+  </main>
+  <footer><span>© 2026 Kishkindha University · AROHANA</span><span>Made for the student community</span></footer>
+</body>
+</html>
